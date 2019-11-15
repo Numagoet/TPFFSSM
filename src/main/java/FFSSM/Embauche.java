@@ -20,20 +20,29 @@ public class Embauche {
 
     /**
      * Termine cette embauche
+     *
      * @param dateFin la date à laquelle cette embauche est terminée
      */
     public void terminer(Calendar dateFin) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");	    
+        if (dateFin.before(debut)) {
+            throw new IllegalArgumentException("La date de fin est antérieure à la date de début");
+        }
+        if (null == dateFin) {
+            throw new IllegalArgumentException("dateFin est null");
+        }
+
+        fin = dateFin;
     }
-    
+
     /**
      * Est-ce que cette embauche est terminée ?
+     *
      * @return vrai si terminée, faux sinon.
      */
     public boolean estTerminee() {
         return (fin != null);
     }
+
     /**
      * Get the value of employeur
      *
@@ -79,5 +88,4 @@ public class Embauche {
         return debut;
     }
 
-    
 }

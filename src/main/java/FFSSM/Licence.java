@@ -47,12 +47,20 @@ public class Licence {
 
     /**
      * Est-ce que la licence est valide à la date indiquée ?
+     *
      * @param d la date à tester
      * @return vrai si valide à la date d
-     **/
+     *
+     */
     public boolean estValide(Calendar d) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        Calendar limiteDeValidite = (Calendar) delivrance.clone();
+        limiteDeValidite.add(Calendar.YEAR, 1);
+        limiteDeValidite.add(Calendar.DAY_OF_YEAR, 1);
+
+        Calendar jourAvant = (Calendar) delivrance.clone();
+        jourAvant.add(Calendar.DAY_OF_YEAR, -1);
+
+        return d.after(jourAvant) && d.before(limiteDeValidite);
     }
 
 }
