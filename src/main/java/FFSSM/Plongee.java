@@ -9,6 +9,8 @@ import java.util.Set;
 
 public class Plongee {
 
+    public Set<Licence> palanquee = new HashSet<>();
+
     public Site lieu;
 
     public Moniteur chefDePalanquee;
@@ -28,8 +30,7 @@ public class Plongee {
     }
 
     public void ajouteParticipant(Plongeur participant) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");	    
+        palanquee.add(participant.derniereLicence());
     }
 
     public Calendar getDate() {
@@ -37,8 +38,13 @@ public class Plongee {
     }
 
     public boolean estConforme() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        boolean result = true;
+        for (Licence l : palanquee) {
+            if (!l.estValide(date)) {
+                result = false;
+            }
+        }
+        return result;
     }
 
 }

@@ -17,12 +17,14 @@ public class Moniteur extends Personne {
         this.numeroDiplome = numeroDiplome;
     }
 
-    public Club employeur() {
-         return employeurs.isEmpty() ? // Si vide on renvoie null
-                null : // Sinon  
-                employeurs.get(employeurs.size() - 1).estTerminee() ? // Si la dernière embauche est terminée
-			null : // Pas d'employeur
-			employeurs.get(employeurs.size() - 1).getEmployeur();
+    public Club employeurActuel() {
+         if (employeurs.isEmpty()){
+             return null;
+         }if (employeurs.get(employeurs.size() - 1).estTerminee()){
+             return null;
+         }else{
+             return employeurs.get(employeurs.size() - 1).getEmployeur();
+    }
     }
     
     public void nouvelleEmbauche(Club employeur, Calendar debutNouvelle) {   
@@ -37,7 +39,8 @@ public class Moniteur extends Personne {
     }
 
     public List<Embauche> emplois() {
-        return Collections.unmodifiableList(employeurs);
+                // TODO: Implémenter cette méthode
+        throw new UnsupportedOperationException("Pas encore implémenté");
     }
 
 }
